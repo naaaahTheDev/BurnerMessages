@@ -1,0 +1,15 @@
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\bin\Release\net6.0\ClientSide.exe
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\bin\Release\net6.0\ClientSide.deps.json
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\bin\Release\net6.0\ClientSide.runtimeconfig.json
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\bin\Release\net6.0\ClientSide.dll
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\bin\Release\net6.0\ClientSide.pdb
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.csproj.AssemblyReference.cache
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.AssemblyInfoInputs.cache
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.AssemblyInfo.cs
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.csproj.CoreCompileInputs.cache
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.dll
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\refint\ClientSide.dll
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.pdb
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ClientSide.genruntimeconfig.cache
+C:\Users\marpt\source\repos\BurnerMessages\BurnerMessages\ClientSide\ClientSide\obj\Release\net6.0\ref\ClientSide.dll
