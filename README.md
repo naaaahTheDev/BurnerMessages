@@ -7,6 +7,7 @@
 - Download the code as a zip file and unzip it.
 
 ## 2. Set Server IP Address
+**ONLY DO THIS STEP IF YOU ARE SETTING UP A SERVER, OTHERWISE CONTINUE TO NEXT STEP**
 - Go into the `ServerSide` Folder.
 - Once inside, find the variable `ipAd` and change it to **YOUR SERVER IP**:
 ```csharp
