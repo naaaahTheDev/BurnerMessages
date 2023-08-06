@@ -17,6 +17,7 @@ IPAddress ipAd = IPAddress.Parse("INPUT_IP_HERE");
 ```csharp
 IPAddress ipAd = IPAddress.Parse("0.0.0.0");
 ```
+- When finished, please rebuild the project.
 
 ## 3. Set Client Connection IP
 - In order for your client to connect to the server, you must pass in the IP of the server you wish to connect to.
@@ -25,6 +26,7 @@ IPAddress ipAd = IPAddress.Parse("0.0.0.0");
 ```csharp
 tcpClient.Connect("INPUT_IP_HERE", 5000);
 ```
+- When finished, please rebuild the project.
 
 ## 4. Launch Server & Client:
 - Once done setting up all IP configuration, you must launch the server as well as clients that will connect (note that clients can connect at any time, does not have to be in the start)
