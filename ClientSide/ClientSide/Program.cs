@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 
 namespace ClientSide
@@ -20,6 +21,18 @@ namespace ClientSide
 				Console.ForegroundColor = ConsoleColor.Green;
 				Console.WriteLine("Connected");
 
+				string username;
+
+				do
+				{
+					Console.Write("Set Desired Username: ");
+					username = Console.ReadLine();
+				} while (string.IsNullOrWhiteSpace(username));
+
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine($"Username set to: {username}");
+
+				Console.ForegroundColor = ConsoleColor.Green;
 				Console.Write("Type anything and press enter to send a message! (type '/exit' to quit.): ");
 
 				NetworkStream stream = tcpClient.GetStream();
@@ -52,10 +65,18 @@ namespace ClientSide
 
 				while (true)
 				{
+					Console.ForegroundColor = ConsoleColor.Green;
+					String usernameString = username;
 					Console.ForegroundColor = ConsoleColor.White;
-					String str = Console.ReadLine();
+					String messageData = Console.ReadLine();
+					ChatMessage message = new ChatMessage
+					{
+						username = usernameString,
+						message = messageData,
+					};
+					
 
-					if (str.ToLower() == "/exit")
+					if (messageData.ToLower() == "/exit")
 					{
 						tcpClient.Close();
 						Console.ForegroundColor = ConsoleColor.Red;
@@ -63,8 +84,9 @@ namespace ClientSide
 						break;
 					}
 
-					byte[] data = Encoding.ASCII.GetBytes(str);
-					stream.Write(data, 0, data.Length);
+					string jsonString = JsonSerializer.Serialize(message);
+					byte[] messageBytes = Encoding.ASCII.GetBytes(jsonString);
+					stream.Write(messageBytes, 0, messageBytes.Length);
 				}
 			}
 			catch (Exception ex)

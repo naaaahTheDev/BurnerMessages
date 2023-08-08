@@ -3,6 +3,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.Text.Json;
 
 namespace ServerSide
 {
@@ -15,7 +16,7 @@ namespace ServerSide
 			{
 				IPAddress ipAd = IPAddress.Parse("INPUT_IP_HERE");
 				TcpListener listener = new TcpListener(ipAd, 5000);
-				
+
 
 				listener.Start();
 
@@ -52,22 +53,24 @@ namespace ServerSide
 		{
 			try
 			{
-				byte[] bytes = new byte[4096];
-				int k;
-				while ((k = clientSocket.Receive(bytes)) != 0)
+				while (true)
 				{
-					Console.ForegroundColor = ConsoleColor.White;
-					String content = "";
-					StringBuilder c = new StringBuilder(content);
+					byte[] dataBuffer = new byte[8192];
+					int bytesRead = clientSocket.Receive(dataBuffer);
 
+					string jsonString = Encoding.ASCII.GetString(dataBuffer, 0, bytesRead);
+					ChatMessage receivedMessage = JsonSerializer.Deserialize<ChatMessage>(jsonString);
+					string username = receivedMessage.username;
+					string message = receivedMessage.message;
 					Console.ForegroundColor = ConsoleColor.Yellow;
 					Console.Write("\nMessage Transferred to Server: ");
-					for (int i = 0; i < k; i++)
-					{
-						Console.Write(Convert.ToChar(bytes[i]));
-						c.Append(Convert.ToChar(bytes[i]));
-					}
-					
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.Write($"{{ {username}: ");
+					Console.ForegroundColor = ConsoleColor.White;
+					Console.Write($"{message} }}\n");
+
+
+
 
 					if (connectedClients.Count > 0)
 					{
@@ -76,24 +79,19 @@ namespace ServerSide
 
 						foreach (Socket client in tempClients)
 						{
-							content = c.ToString();
 							ASCIIEncoding encoding = new ASCIIEncoding();
 							Console.ForegroundColor = ConsoleColor.White;
-							client.Send(encoding.GetBytes("\nMessage Received: " + content + "\n"));
+							client.Send(encoding.GetBytes($"From {{ {username} }}: {message}"));
 						}
 					}
 					ASCIIEncoding asen = new ASCIIEncoding();
 					clientSocket.Send(asen.GetBytes("\nMessage Sent!\n"));
 				}
-
-				clientSocket.Close();
-				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("\nClient disconnected: " + clientSocket.RemoteEndPoint);
 			}
 			catch (Exception ex)
 			{
 				Console.ForegroundColor = ConsoleColor.Red;
-				Console.WriteLine("\nClient Disconnected Due to Error or Manual Disconnection.\n");
+				Console.WriteLine("\nClient Disconnected Due to Error or Manual Disconnection.\n" + ex.Message);
 			}
 		}
 	}

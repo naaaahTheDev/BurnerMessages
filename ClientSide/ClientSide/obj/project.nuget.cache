@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CU4NXF5VheFjqfTVtR50GKlEepvNjYhHAHw+mPSgRu+wzVr62hiy0MxbA754V+ByiCAmzDmkDl6Lq+2/BWSUtQ==",
+  "dgSpecHash": "KojMsniZhJWqyb8gPamRTUlES+M6ynFvvSLW7dW+BmK6xscNBQZsVt+7Ryb8gQ6izxO9WycjoqaLSaEoRfdEow==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marpt\\source\\repos\\ClientSide\\ClientSide\\ClientSide.csproj",
+  "projectFilePath": "C:\\Users\\marpt\\source\\repos\\BurnerMessages\\BurnerMessages\\ClientSide\\ClientSide\\ClientSide.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

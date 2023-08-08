@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marpt\\source\\repos\\ServerSide\\ServerSide\\ServerSide.csproj": {}
+    "C:\\Users\\marpt\\source\\repos\\BurnerMessages\\BurnerMessages\\ServerSide\\ServerSide\\ServerSide.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marpt\\source\\repos\\ServerSide\\ServerSide\\ServerSide.csproj": {
+    "C:\\Users\\marpt\\source\\repos\\BurnerMessages\\BurnerMessages\\ServerSide\\ServerSide\\ServerSide.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marpt\\source\\repos\\ServerSide\\ServerSide\\ServerSide.csproj",
+        "projectUniqueName": "C:\\Users\\marpt\\source\\repos\\BurnerMessages\\BurnerMessages\\ServerSide\\ServerSide\\ServerSide.csproj",
         "projectName": "ServerSide",
-        "projectPath": "C:\\Users\\marpt\\source\\repos\\ServerSide\\ServerSide\\ServerSide.csproj",
+        "projectPath": "C:\\Users\\marpt\\source\\repos\\BurnerMessages\\BurnerMessages\\ServerSide\\ServerSide\\ServerSide.csproj",
         "packagesPath": "C:\\Users\\marpt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marpt\\source\\repos\\ServerSide\\ServerSide\\obj\\",
+        "outputPath": "C:\\Users\\marpt\\source\\repos\\BurnerMessages\\BurnerMessages\\ServerSide\\ServerSide\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
