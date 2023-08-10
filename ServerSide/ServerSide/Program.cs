@@ -88,6 +88,7 @@ namespace ServerSide
 			{
 				Console.ForegroundColor = ConsoleColor.DarkRed;
 				Console.WriteLine("\nClient Disconnected Due to Error or Manual Disconnection.\n");
+				connectedClients.Remove(clientSocket);
 			}
 		}
 	}
