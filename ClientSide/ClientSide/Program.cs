@@ -1,96 +1,52 @@
 ﻿// Client Side
 using System;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.Json;
 using System.Threading;
+using ClientSide.Classes;
 
 namespace ClientSide
 {
-	public class Program
+    public class Program
 	{
 		public static void Main(string[] args)
 		{
+			IPAddress ip = IPAddress.Loopback;
+			int port = 0;
+			Console.WriteLine("Please setup your client");
 			try
 			{
-				TcpClient tcpClient = new TcpClient();
-				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine("Connecting...");
-
-				tcpClient.Connect("INPUT_IP_HERE", 5000);
-
-				Console.ForegroundColor = ConsoleColor.Green;
-				Console.WriteLine("Connected to the chat server");
-
-				string username;
-
-				do
-				{
-					Console.Write("Enter Your Username: ");
-					username = Console.ReadLine();
-				} while (string.IsNullOrWhiteSpace(username));
-
-				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine($"Welcome, {username}!");
-
-				Console.ForegroundColor = ConsoleColor.Green;
-				Console.WriteLine("Type your message and press Enter to send (type '/exit' to quit):");
-
-				NetworkStream stream = tcpClient.GetStream();
-
-				Thread receiveThread = new Thread(() =>
-				{
-					try
-					{
-						byte[] receiveBuffer = new byte[4096];
-						while (true)
-						{
-							int bytesRead = stream.Read(receiveBuffer, 0, receiveBuffer.Length);
-							if (bytesRead > 0)
-							{
-								string receivedMessage = Encoding.ASCII.GetString(receiveBuffer, 0, bytesRead);
-								Console.ForegroundColor = ConsoleColor.DarkCyan;
-								Console.WriteLine($"[{DateTime.Now.ToString("HH:mm:ss")}] {receivedMessage}");
-								Console.ForegroundColor = ConsoleColor.White;
-							}
-						}
-					}
-					catch (Exception ex)
-					{
-						Console.ForegroundColor = ConsoleColor.DarkRed;
-						Console.WriteLine("Error while receiving: " + ex.Message);
-					}
-				});
-				receiveThread.Start();
-
-				while (true)
-				{
-					Console.ForegroundColor = ConsoleColor.Green;
-					String messageData = Console.ReadLine();
-
-					if (messageData.ToLower() == "/exit")
-					{
-						tcpClient.Close();
-						Console.ForegroundColor = ConsoleColor.DarkRed;
-						Console.WriteLine("Disconnected from the server");
-						break;
-					}
-
-					ChatMessage message = new ChatMessage
-					{
-						username = username,
-						message = messageData,
-					};
-
-					string jsonString = JsonSerializer.Serialize(message);
-					byte[] messageBytes = Encoding.ASCII.GetBytes(jsonString);
-					stream.Write(messageBytes, 0, messageBytes.Length);
-				}
+				Console.Write("Enter Server IP: ");
+				ip = IPAddress.Parse(Console.ReadLine());
 			}
-			catch (Exception ex)
+			catch (FormatException e)
 			{
-				Console.ForegroundColor = ConsoleColor.DarkRed;
-				Console.WriteLine("Error while communicating with server to send message.");
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("Value entered is not in an IP format. Please restart the setup and try again.");
+			}
+
+			try
+			{
+				Console.Write("\nEnter Server Port: ");
+				port = int.Parse(Console.ReadLine());
+			}
+			catch (FormatException e)
+			{
+				Console.ForegroundColor = ConsoleColor.Red;
+				Console.WriteLine("Value entered is not a number. Please restart the setup and try again.");
+			}
+
+			try
+			{
+				Client client = new Client(ip, port);
+
+				client.Connect();
+			} catch (Exception e)
+			{
+				Console.ForegroundColor= ConsoleColor.Red;
+				Console.WriteLine("Error while connecting to server: " + e.Message);
 			}
 		}
 	}
